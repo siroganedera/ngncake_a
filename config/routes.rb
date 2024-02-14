@@ -1,52 +1,54 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
+
+  root :to => 'homes#top'
+  get 'about' => 'home#about'
+
+  resources :items, only: [:index, :show]
+
+  get 'customers/my_page', to: 'customers#show'
+  get 'customers/information/edit', to: 'customers#edit'
+  get 'customers/information', to: 'customers#update'
+  get 'customers/unsubscribe', to: 'customeres#unsubscribe'
+  delete 'customers/withdraw', to: 'customers#withdraw'
+
+  resources :cart_items, only: [:create, :index, :update, :destroy] do
+    collection do
+      delete 'destroy_all'
+    end
   end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/index'
-    get 'orders/show'
+
+  resources :orders, only: [:new, :create, :index, :show] do
+    collection do
+      post 'confirm'
+      get 'thanks'
+    end
   end
-  namespace :public do
-    get 'cart_items/index'
+
+  resources :addresses, only: [:create, :index, :edit, :update, :destroy]
+
+  namespace :admin do
+    root :to => 'homes#top'
   end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/unsubscribe'
+
+  namespace :admin do
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
   end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
+
+  namespace :admin do
+    resources :genres, only: [:create, :index, :edit, :update]
   end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
+
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+
+  namespace :admin do
+    resources :orders, only: [:show, :update]
   end
   namespace :admin do
-    get 'orders/show'
+    resources :orders_details, only: [:update]
   end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
+
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
