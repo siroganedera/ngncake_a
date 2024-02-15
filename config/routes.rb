@@ -21,7 +21,17 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
+  feature-membership_admin_side
+    # URL /admin/sign_in ...
+    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
 
+  # URL /admin/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
   namespace :admin do
     root :to => 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
@@ -30,7 +40,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :orders_details, only: [:update]
   end
-
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end
