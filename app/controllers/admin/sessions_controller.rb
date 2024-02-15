@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  feature-membership_admin_side
   
   def after_sign_in_path_for(resource)
     admin_root_path
