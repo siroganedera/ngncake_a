@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
-  feature-membership_admin_side
-    # URL /admin/sign_in ...
-    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
 
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
   namespace :admin do
     root :to => 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
