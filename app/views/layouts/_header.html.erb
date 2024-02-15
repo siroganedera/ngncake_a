@@ -10,68 +10,68 @@
         <% if admin_signed_in? %>
           <li>
             <%= link_to admin_items_path,class: 'nav-link text-light' do %>
-              商品一覧
+              <i class="fa-solid fa-cake-candles"></i>Items
             <% end %>
           </li>
           <li>
             <%=  link_to admin_customers_path,class: 'nav-link text-light' do %>
-              会員一覧
+              <i class="fa-solid fa-users"></i>Customers
             <% end %>
           </li>
           <li>
             <%=  link_to admin_root_path,class: 'nav-link text-light' do %>
-              注文履歴一覧
+              <i class="fa-solid fa-cart-shopping"></i>Orders
             <% end %>
           </li>
           <li>
             <%= link_to admin_genres_path, method: :delete,class: 'nav-link text-light' do %>
-              ジャンル一覧
+              <i class="fa-solid fa-list"></i>Genres
             <% end %>
           </li>
           <li>
             <%= link_to destroy_admin_session_path: :delete,class: 'nav-link text-light' do %>
-              ログアウト
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out
             <% end %>
         <% elsif customer_signed_in? %>
           <li>
             <%= link_to customers_my_page_path,class: 'nav-link text-light' do %>
-              マイページ
+              <i class="fa-solid fa-user"></i>My page
             <% end %>
           </li>
           <li>
             <%=  link_to items_path,class: 'nav-link text-light' do %>
-              商品一覧
+              <i class="fa-solid fa-cake-candles"></i>Items
             <% end %>
           </li>
           <li>
             <%=  link_to cart_items_path(curent_customer),class: 'nav-link text-light' do %>
-              カート
+              <i class="fa-solid fa-cart-shopping"></i>Carts
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
-              ログアウト
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out
             <% end %>
           </li>
         <% else %>
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> About
+              <i class="fa-solid fa-truck-fast"></i>About
             <% end %>
           </li>
           <li>
             <%=  link_to items_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> 商品一覧
+              <i class="fa-solid fa-cake-candles"></i>Items
             <% end %>
           </li>
           <li>
             <%=  link_to new_customer_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> 新規登録
+              <i class="fa-solid fa-user-plus"></i>Sign Up
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_session_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> ログイン
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>Log In
             <% end %>
           </li>
         <% end %>
