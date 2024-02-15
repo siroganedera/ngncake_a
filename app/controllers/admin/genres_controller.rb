@@ -15,12 +15,12 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @genre = Genre.find(params[:id])
   end
 
   def update
     @genre = Genre.find(params[:id])
-    if @book.update(genre_params)
+    if @genre.update(genre_params)
       redirect_to genre_path(@genre), notice: "ジャンル名を変更しました。"
     else
       render "edit"
