@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-  feature-membership_admin_side
   
   def after_sign_in_path_for(resource)
     admin_root_path
+  end
+  
+  def after_sign_out_path_for(resource)
+    new_admin_session_path
   end
   # before_action :configure_sign_in_params, only: [:create]
 
