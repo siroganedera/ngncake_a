@@ -1,7 +1,7 @@
 class Admin::GenresController < ApplicationController
   def create
     @genre= Genre.new
-    @genre.user_id = current_user.id
+    @genre.admin_id = current_admin.id
     if@genre.save
       redirect_to genre_path(@genre), notice: "ジャンルを追加しました"
     else
