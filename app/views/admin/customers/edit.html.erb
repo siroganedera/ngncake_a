@@ -55,12 +55,12 @@
                   <th>ステータス</th>
                   <td>
                     <div class="form-check form-check-inline">
-                      <%= f.radio_button :is_deleted, false, class: "form-check-input" %>
-                      <%= f.label :is_deleted_false, '退会', class: "form-check-label" %>
+                      <%= f.radio_button :is_active, false, class: "form-check-input" %>
+                      <%= f.label :is_active_false, '退会', class: "form-check-label" %>
                     </div>
                     <div class="form-check form-check-inline">
-                      <%= f.radio_button :is_deleted, true, class: "form-check-input" %>
-                      <%= f.label :is_deleted_true, '有効', class: "form-check-label" %>
+                      <%= f.radio_button :is_active, true, class: "form-check-input" %>
+                      <%= f.label :is_active_true, '有効', class: "form-check-label" %>
                     </div>
                   </td>
                 </tr>
