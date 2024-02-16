@@ -1,27 +1,29 @@
-<h1>会員一覧</h1>
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
+<div class="container">
+  <h3 class="m-3">会員一覧</h3>
+  <table class='table table-hover table-inverse'>
+    <thead>
       <tr>
-        <td><%= customer.id %></td>
-        <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
-        <td><%= customer.email %></td>
-        <td>                   
-        <% if customer.is_active? %>
-          <p>有効</p>
-        <% else %>
-          <p>退会済</p>
-        <% end %>
-        </td>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
+          <td><%= customer.email %></td>
+          <td>                   
+          <% if customer.is_active? %>
+            <p>有効</p>
+          <% else %>
+            <p>退会済</p>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
