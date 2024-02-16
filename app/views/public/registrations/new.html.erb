@@ -53,6 +53,18 @@
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
                   </td>
                 </tr>
+                <tr>
+                  <th>パスワード6文字以上</th>
+                  <td>
+                    <%= f.password_field :password, autocomplete: "new-password",class:"form-control" %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>パスワード(確認用)</th>
+                  <td>
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control" %>
+                  </td>
+                </tr>
               </tbody>
             </table>
 
