@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_sign_up_params, if: :devise_controller?
+  
   def after_sign_up_path_for(resource)
     customers_my_page_path
   end
@@ -14,7 +16,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
+  #   super;
   # end
 
   # GET /resource/edit

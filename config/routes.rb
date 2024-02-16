@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
-  namespace :public do
+  
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+
+  # URL /customers/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
+  scope module: :public do
     root :to => 'homes#top'
-    get 'about' => 'home#about'
+    get 'about' => 'homes#about'
     resources :items, only: [:index, :show]
     get 'customers/my_page', to: 'customers#show'
     get 'customers/information/edit', to: 'customers#edit'
@@ -21,18 +33,7 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
-  
-  # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
 
-  # URL /admin/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
-  
   namespace :admin do
     root :to => 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
@@ -41,5 +42,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :orders_details, only: [:update]
   end
-  
+
 end
