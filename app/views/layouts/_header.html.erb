@@ -24,12 +24,12 @@
             <% end %>
           </li>
           <li>
-            <%= link_to admin_genres_path, method: :delete,class: 'nav-link text-light' do %>
+            <%= link_to admin_genres_path ,class: 'nav-link text-light' do %>
               <i class="fa-solid fa-list"></i>Genres
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_admin_session_path: :delete,class: 'nav-link text-light' do %>
+            <%= link_to destroy_admin_session_path,method: :delete, class: 'nav-link text-light' do %>
               <i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out
             <% end %>
         <% elsif customer_signed_in? %>
@@ -44,7 +44,7 @@
             <% end %>
           </li>
           <li>
-            <%=  link_to cart_items_path(curent_customer),class: 'nav-link text-light' do %>
+            <%=  link_to cart_items_path(current_customer),class: 'nav-link text-light' do %>
               <i class="fa-solid fa-cart-shopping"></i>Carts
             <% end %>
           </li>
