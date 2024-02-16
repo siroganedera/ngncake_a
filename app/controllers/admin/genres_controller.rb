@@ -1,18 +1,15 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  def create
-    @genre = Genre.new(genre_params)
-    if@genre.save
-      redirect_to admin_genres_path(@genre)#, notice: "ジャンルを追加しました"
-    else
-      @genres=Genre.all
-      render 'index'
-    end
-  end
 
   def index
-    @genres = Genre.all
     @genre = Genre.new
+    @genres = Genre.all
+  end
+
+  def create
+    @genre = Genre.new(genre_params)
+    @genre.save
+    redirect_to admin_genres_path
   end
 
   def edit
@@ -21,18 +18,15 @@ class Admin::GenresController < ApplicationController
 
   def update
     @genre = Genre.find(params[:id])
-    if @genre.update(genre_params)
-      redirect_to admin_genres_path(@genre)#, notice: "ジャンル名を変更しました。"
-    else
-      render "edit"
-    end
+    @genre.update(genre_params)
+    redirect_to admin_genres_path(@genre)
   end
-  
+
   private
 
   def genre_params
     params.require(:genre).permit(:name)
   end
-  
-  
+
+
 end
