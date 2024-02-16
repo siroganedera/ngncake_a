@@ -10,10 +10,11 @@ class Admin::ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       render 'new'
+    end
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def show
@@ -28,4 +29,5 @@ class Admin::ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:name)
+    end
 end

@@ -1,26 +1,24 @@
+<h2>商品一覧</h2>
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
       <th></th>
       <th>商品ID</th>
       <th>商品名</th>
-      <th></th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
     </tr>
   </thead>
   <tbody>
-    <% books.each do |book| %>
+    <% @items.each do |item| %>
       <tr>
-        <td><%= link_to(book.user) do %>
-          <%= image_tag book.user.get_profile_image, size:'50x50' %>
-          <% end %>
-        </td>
-        <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
-        <td><%= book.body %></td>
-        <td class=<%= "favorite-" + book.id.to_s %> >
-            <%= render "favorites/btn", book: book %>
-        </td>
-        <td><%= render "book_comments/counter", book: book %></td>
+        <td><%= item.id %></td>
+        <td><%= link_to item.name,item %></td>
+        <td><%= item.body %></td>
+        <td><%= item.price %></td>
+        <td></td>
       </tr>
     <% end %>
+    <% paginate @items %>
   </tbody>
 </table>
