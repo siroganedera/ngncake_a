@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     get 'customers/my_page', to: 'customers#show'
     get 'customers/information/edit', to: 'customers#edit'
-    get 'customers/information', to: 'customers#update'
-    get 'customers/unsubscribe', to: 'customeres#unsubscribe'
-    delete 'customers/withdraw', to: 'customers#withdraw'
+    patch 'customers/information', to: 'customers#update'
+    get 'customers/unsubscribe', to: 'customers#unsubscribe'
+    patch 'customers/withdraw', to: 'customers#withdraw'
     resources :cart_items, only: [:create, :index, :update, :destroy] do
       collection do
         delete 'destroy_all'
