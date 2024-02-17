@@ -1,2 +1,62 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <%= form_with model: @address, url: addresses_path do |f| %>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card mt-5 mb-5">
+          <div class="card-header text-center">
+            <h3>配送先登録</h3>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>郵便番号</th>
+                <td>
+                  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %>
+                </td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td>
+                  <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+                </td>
+              </tr>
+              <tr>
+                <th>宛名</th>
+                <td>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right mr-5 mb-3">
+            <%= f.submit "新規登録", class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <h3 class="m-3">配送先一覧</h3>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td>〒<%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td> 
+            <%= link_to "編集する", edit_address_path(address), class: "btn btn-success btn-sm" %>
+            <%= link_to "削除する", address_path(address), class: "btn btn-danger btn-sm ml-2", method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
