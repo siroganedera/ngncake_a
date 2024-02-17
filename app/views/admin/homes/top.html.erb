@@ -1,38 +1,29 @@
-
-<div class='container px-5 '>
-  <%= render 'layouts/errors', obj: @book %>
-  
+<div class='container'>
   <div class='row'>
-    <div class='col-md-2'>
-      
-    <%# ジャンル検索・一覧 （見た目だけ）%>
-      <table class='table table-hover table-inverse'>
-        <thead>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>Order history</h2>
+
+      <thead>
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @orders.each do |order| %>
           <tr>
-            <th>ジャンル検索</th>
+            <td><%= link_to order.created_at,admin_order_path(order) %></td>
+
+            <td><%= link_to order.customer.last_name + order.customer.first_name, admin_order_path(order) %></td>
+            <td><%= order.%></td>
+
+            <td><%= order.order_status %></td>
+
           </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td><%= genre.name %></td>
-              <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-sm btn-success" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-            
-      
-      <%= render 'users/info', user: current_user %>
-      <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book %>
+      <% end %>
+    </tbody>
     </div>
-    
-    <%# index部分 %>
-    <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
-      <%= render 'index', books: @books%>
-    </div>
-    
-  </div>
-</div
+</div>
