@@ -15,10 +15,9 @@
         
         
         <tbody>
-          <%# コメントアウト解除時に、空白を消し数字に > を代入します
-          <% @genres.each do |genre| %  1
+          <% @genres.each do |genre| %>
             <tr>
-              <td><%= genre.name %  2</td>
+              <td><%= genre.name %></td>
             </tr>
           <% end %>
         </tbody>  
@@ -28,39 +27,37 @@
     <%# 会員勧誘文 %>
     <div class='col-md-7 offset-md-3'>
       
-      <% if current_user.nil? %>
       <h4>ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
-      購入には会員登録が必要になります。</h3>
+      購入には会員登録が必要になります。</h4>
     </div>
     
   </div>
   
     <%# 新着商品 %>
-  <%#
   
   <div class="row">
     <h3>新着商品</h3>
-    <% @recent_items.each_slice(4) do |items_slice| %  1
+    <% @recent_items.each_slice(4) do |items_slice| %>
       <div class="col-md-3">
-        <% items_slice.each do |item| %  2
+        <% items_slice.each do |item| %>
           <div class="card mb-3">
-            <%= image_tag(item.image_url, class: "card-img-top") %  3
+            <%#
+            <%= image_tag(item.image_url, class: "card-img-top") %>
             <div class="card-body">
-              <h5 class="card-title"><%= item.name %  4</h5>
-              <p class="card-text">¥<%= item.price %  5</p>
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text">¥<%= item.price %></p>
             </div>
           </div>
-        <% end %  6
+        <% end %>
       </div>
-    <% end %  7
+    <% end %>
   </div>
-  %>
   
   <div class="text-center">
     <%= link_to "すべての商品を見る", items_path, class: "btn btn-primary" %>
   </div>
       
   
-</div
+</div>
