@@ -33,8 +33,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   private
+
     def item_params
-      params.require(:item).permit(:name, :introduction, :price, :item_image, :is_active)
+      genre_name = params[:item].delete(:genre)
+      genre = Genre.find_by(name: genre_name)
+      params.require(:item).permit(:name, :introduction, :price, :image, :is_active).merge(genre: genre)
     end
 
     def set_item
