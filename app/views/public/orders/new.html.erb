@@ -1,2 +1,33 @@
 <h1>Public::Orders#new</h1>
 <p>Find me in app/views/public/orders/new.html.erb</p>
+<h1>注文情報確認</h1>
+<table>
+  
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th></th>
+      <th>単価</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <%# 商品画像 %>
+      <td><%= image_tag cart_item.item.get_item_image %></td>
+      <%# 商品名 %>
+      <td>cart_item.name</td>
+      <%# 税抜価格　変更→税込価格 %>
+      <td>cart_item.price</td>
+      <%# 商品の個数 %>
+      <td>cartitem.amount</td>
+      <%# 税込価格×個数 %>
+      <td>cartitem.</td>
+    </tr>
+  <tbody>
+    
+  </tbody>  
+    
+</table>
