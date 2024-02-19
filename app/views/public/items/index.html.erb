@@ -13,7 +13,7 @@
             <%= image_tag item.get_image, size: "250x200" %>
           <% end %>
           商品名<%= item.name %><br>
-          ￥<%= item.price.to_s(:delimited) %>
+          ￥<%= item.add_tax_price.to_s(:delimited) %>
         </div>
       </div>
       <% end %>
