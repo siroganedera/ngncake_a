@@ -1,11 +1,11 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @genre_new = Genre.new
     @genres = Genre.all
   end
-  
+
   def create
     @genre= Genre.new(genre_params)
     if@genre.save
@@ -29,11 +29,11 @@ class Admin::GenresController < ApplicationController
       render :edit, locals: { genre: @genre } 
     end
   end
-  
+
   private
 
   def genre_params
     params.require(:genre).permit(:name)
   end
-  
+
 end
