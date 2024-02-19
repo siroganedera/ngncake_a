@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     post 'orders/confirm', to: "orders#confirm"
     resources :orders, only: [:new, :create, :index, :show]
     
+    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
 
   namespace :admin do
