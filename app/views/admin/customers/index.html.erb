@@ -17,9 +17,9 @@
           <td><%= customer.email %></td>
           <td>                   
           <% if customer.is_active? %>
-            <p>有効</p>
+            <p class="badge badge-success">有効</p>
           <% else %>
-            <p>退会済</p>
+            <p class="badge badge-secondary">退会済</p>
           <% end %>
           </td>
         </tr>
