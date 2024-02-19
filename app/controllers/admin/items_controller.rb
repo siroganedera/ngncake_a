@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_genres, only: [:new, :edit]
   def new
     @item = Item.new
   end
@@ -42,5 +43,9 @@ class Admin::ItemsController < ApplicationController
 
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    def set_genres
+      @genres = Genre.all.map { |genre| [ genre.name, genre.id ] }
     end
 end
