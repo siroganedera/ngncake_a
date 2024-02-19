@@ -37,9 +37,12 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
+    params.require(:order).permit(:payment_method)
     params[:order][:select_address]
     # orderのパラメーターを許可する
   end
+
+  def 
 
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
