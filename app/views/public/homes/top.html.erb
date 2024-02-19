@@ -1,17 +1,13 @@
-<div class='container px-5 '>
+<div class='container mt-3'>
   
   <div class='row'>
     <div class='col-md-2'>
-      
-    <%# ジャンル検索・一覧 （見た目だけ）%>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
             <th>ジャンル検索</th>
           </tr>
         </thead>
-        
-        
         <tbody>
           <% @genres.each do |genre| %>
             <tr>
@@ -21,41 +17,21 @@
         </tbody>  
       </table>
     </div>
-    
-    <%# 会員勧誘文 %>
-    <div class='col-md-7 offset-md-3'>
-      
+    <div class='col-md-7 offset-md-3 m-auto'>
       <h4>ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
       購入には会員登録が必要になります。</h4>
     </div>
-    
   </div>
-  
-    <%# 新着商品 %>
-  
-  <div class="row">
-    <h3>新着商品</h3>
-    <% @recent_items.each_slice(4) do |items_slice| %>
-      <div class="col-md-3">
-        <% items_slice.each do |item| %>
-          <div class="card mb-3">
-            <%#
-            <%= image_tag(item.image_url, class: "card-img-top") %>
-            <div class="card-body">
-              <h5 class="card-title"><%= item.name %></h5>
-              <p class="card-text">¥<%= item.price %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+  <div class="mx-auto">
+  <h2>新着商品</h2>
+    <div class="row">
+      <% @items.first(4).each do |item| %>
+      <% end %>
+    </div>
+    <div class="text-right">
+      <%= link_to "すべての商品を見る", items_path, class: "btn btn-primary" %>
+    </div>
   </div>
-  
-  <div class="text-center">
-    <%= link_to "すべての商品を見る", items_path, class: "btn btn-primary" %>
-  </div>
-      
-  
 </div>
