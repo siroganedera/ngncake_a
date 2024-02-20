@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     
   end
-
+  
   namespace :admin do
     root :to => 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]

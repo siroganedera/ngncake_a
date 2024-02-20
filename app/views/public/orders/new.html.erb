@@ -24,7 +24,7 @@
       <td>
         <%# 登録先住所 %>
         <%= f.radio_button :serect_address, "registered_address" %>
-        <%= f.select :serect_address_address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        <%= f.select :serect_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
       </td>
 
         <%# 新しいお届け先 %>

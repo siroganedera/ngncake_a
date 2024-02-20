@@ -3,7 +3,6 @@ class Public::OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    @address = Address.new
   end
 
   def create
@@ -20,10 +19,22 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order_detairs = Order_detair.all
-    @order = Order.new
+    @cart_items = CartItem.all
+    
+    @order = Order.new(order_params)
+    @address = Address.find(params[:order][:address_id])
+    @order.postal_code = @address.postal_code
+    @order.address = @address.address
+    @order.name = @address.name
+    
+    @order = Order.new(order_params)
+    # 注文情報の確認処理を追加する
+    if @order.valid?
+      render :confirm
+    else
+      render :new
+    end
   end
-
   def thanks
   end
 
@@ -32,18 +43,17 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
   
   private
 
   def order_params
-    params.require(:order).permit(:payment_method)
-    params[:order][:select_address]
-    # orderのパラメーターを許可する
+    params.require(:order).permit(:serect_address, :address_id, :postal_code, :address, :name)
+    params[:order][:payment_method]
   end
-
-  def 
-
+  
+  
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
