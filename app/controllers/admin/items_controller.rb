@@ -8,7 +8,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if@item.save
+    if @item.save
       redirect_to admin_item_path(@item)
     else
       render 'new'
@@ -26,7 +26,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    if@item.update(item_params)
+    if @item.update(item_params)
       redirect_to admin_item_path(@item)
     else
       render "edit"
@@ -36,9 +36,7 @@ class Admin::ItemsController < ApplicationController
   private
 
     def item_params
-      genre_name = params[:item].delete(:genre)
-      genre = Genre.find_by(name: genre_name)
-      params.require(:item).permit(:name, :introduction, :price, :image, :is_active).merge(genre: genre)
+      params.require(:item).permit(:name, :introduction, :price, :image, :is_active, :genre_id )
     end
 
     def set_item

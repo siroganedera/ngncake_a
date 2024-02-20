@@ -3,9 +3,9 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>商品詳細</h2>
       <% if @item.image.attached? %>
-        <%= image_tag @item.get_image, size: "300×300" %>
+        <%= image_tag @item.get_image, size: "300x300" %>
       <% else %>
-        <%= image_tag 'no-image-icon', size: "300×300" %>
+        <%= image_tag 'no-image-icon', size: "300x300" %>
       <% end %>
       <p>商品名<%= @item.name %></P>
       <p>商品説明<%= @item.introduction %></p>
