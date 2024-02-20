@@ -3,12 +3,6 @@ class Public::OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    # 注文情報の確認処理を追加する
-    if @order.valid?
-      render :confirm
-    else
-      render :new
-    end
   end
 
   def create
@@ -32,8 +26,8 @@ class Public::OrdersController < ApplicationController
     @order.address = @address.address
     @order.name = @address.name
     
-
   end
+  
   def thanks
   end
 
