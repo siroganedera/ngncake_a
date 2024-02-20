@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>新規商品登録</h2>
+    <h2>商品登録</h2>
     <%= form_with model:@item, url: admin_items_path, local:true do |f| %>
       <div class="form-group">
         <%= f.label :商品画像 %>
@@ -17,7 +17,7 @@
       </div>
       <div class="form-group">
         <%= f.label :ジャンル %>
-        <%= f.collection_select :id, Genre.all, :id, :name, {prompt: "---選択してください---"}, :class => 'form-control', :id => 'genre_id' %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "---選択してください---"}, :class => 'form-control', :id => 'genre_id' %>
       </div>
       <div class="form-group">
         <%=f.label:税抜価格 %>
@@ -29,7 +29,7 @@
         <%= f.radio_button :is_active, false %>
         <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
       <div class="form-group">
-        <%= f.submit "新規登録", class: 'btn btn-success' %>
+        <%= f.submit "商品登録", class: 'btn btn-success' %>
       </div>
     <% end %>
     </div>

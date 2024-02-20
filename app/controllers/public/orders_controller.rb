@@ -3,16 +3,21 @@ class Public::OrdersController < ApplicationController
   
   def new
     @order = Order.new
+    # 注文情報の確認処理を追加する
+    if @order.valid?
+      render :confirm
+    else
+      render :new
+    end
   end
 
   def create
     @order = Order.new(order_params)
     @address = Address.new(address_params)
-
+  
     if @order.save && @address.save
       # 保存が成功した場合の処理
       redirect_to thanks_orders_path
-      
     else
       render :new
     end
@@ -27,13 +32,7 @@ class Public::OrdersController < ApplicationController
     @order.address = @address.address
     @order.name = @address.name
     
-    @order = Order.new(order_params)
-    # 注文情報の確認処理を追加する
-    if @order.valid?
-      render :confirm
-    else
-      render :new
-    end
+
   end
   def thanks
   end
