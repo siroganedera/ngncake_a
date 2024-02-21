@@ -8,7 +8,7 @@ class Item < ApplicationRecord
     validates :name
     validates :introduction
     validates :price
-    validates :image
+    validates :ima
   end
 
   def get_image(width,height)
