@@ -8,10 +8,11 @@ class Item < ApplicationRecord
     validates :name
     validates :introduction
     validates :price
+    validates :image
   end
 
-  def get_image
-    (image.attached?) ? image : 'no-image-icon.jpg'
+  def get_image(width,height)
+    image.variant(resize_to_limit: [width,height]).processed
   end
 
   def add_tax_price
