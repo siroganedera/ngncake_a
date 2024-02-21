@@ -1,33 +1,39 @@
-<h2>商品一覧</h2>
-<div>
-  <%= link_to "+",new_admin_item_path, class: "btn01" %>
-</div>
-<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
+<div class='col-md-8 offset-md-2'>
+  <div class="d-flex fa-2x">
+    <h2 class='p-2 flex-grow-1'>商品一覧</h2>
+    <div class='p-2'>
+      <%= link_to new_admin_item_path do %>
+        <i class="fa-solid fa-circle-plus fa-xl" style="color: #74c0fc;"></i>
+      <% end %>
+    </div>
+  </div>
+  <table class='table table-hover table-inverse'>
+    <thead>
       <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to item.name, admin_item_path(item.id) %></td>
-        <td><%= item.price.to_s(:delimited) %></td>
-        <td><%= item.genre.name %></td>
-        <td>
-          <% if item.is_active? %>
-            <p class="badge badge-success">販売中</p>
-          <% else %>
-            <p class="badge badge-secondary">販売停止中</p>
-          <% end %>
-        </td>
+        <th scope='col' style='width: 10%'>商品ID</th>
+        <th>商品名</th>
+        <th scope='col' style='width: 10%'>税抜価格</th>
+        <th>ジャンル</th>
+        <th scope='col' style='width: 15%'>ステータス</th>
       </tr>
-    <% end %>
-    <% paginate @items %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id) %></td>
+          <td><%= item.price.to_s(:delimited) %></td>
+          <td><%= item.genre.name %></td>
+          <td>
+            <% if item.is_active? %>
+              <p class="text-success">販売中</p>
+            <% else %>
+              <p class="text-black-50">販売停止中</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @items %>
+</div>

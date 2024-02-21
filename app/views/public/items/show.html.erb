@@ -1,2 +1,26 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='d-flex flex-row md-3'>
+      <div class='p-2 col-md-3'>
+        <p>ジャンル検索</p>
+        <%= render 'search' %>
+      </div>
+      <div class='p-2'>
+        <%= image_tag @item.get_image, size: "250x200" %>
+      </div>
+      <div class='p-2 col-md-6'>
+        <h2><%= @item.name %></h2><br>
+        <p><%= @item.introduction %></p>
+        ￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)
+        <% if @item.is_active == true %>
+          <%= form_with model: @cart_item,url: cart_items_path, method: :post,local: true do |f| %>
+            <%= f.label :amount, '個数選択' %>
+              <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.submit "カートに入れる", class: 'btn btn-secondary' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
