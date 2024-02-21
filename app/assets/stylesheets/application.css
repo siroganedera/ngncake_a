@@ -12,3 +12,10 @@
   border-radius: 15px;   
 }
 
+.custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px; /* 必要に応じて調整 */
+  text-align: center; /* テキストを中央揃えに */
+}
