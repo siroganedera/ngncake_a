@@ -2,6 +2,7 @@
   <h2 class="offset-md-2 mt-4">商品新規登録</h2>
   <div class="col row justify-content-center mt-4">
     <div class='col-md-6'>
+    <%= render 'layouts/errors', obj: @item %>
     <%= form_with model:@item, url: admin_items_path, local:true do |f| %>
       <div class="form-group d-flex">
         <div class="p-2" style="width: 172px;"><%= f.label :商品画像 %></div>

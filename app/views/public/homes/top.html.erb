@@ -1,7 +1,6 @@
-<div class='container mt-3'>
-  <div class="text-center"><%= flash[:notice] %></div>
+<div class='container mt-5'>
   <div class='row'>
-    <div class='col-md-2'>
+    <div class='col-md-2 text-center'>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
@@ -14,39 +13,40 @@
               <td><%= genre.name %></td>
             </tr>
           <% end %>
-        </tbody>
+        </tbody>  
       </table>
     </div>
-    <div class='col-md-7 offset-md-3 m-auto'>
-      <h4>ようこそ、ながのCAKEへ！<br>
+    <div class='col-md-9 offset-md-1 m-auto'>
+      <h4 class="custom">ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
-      購入には会員登録が必要になります。</h4>
-    </div>
-  </div>
-  <div class="mx-auto">
-  <h2>新着商品</h2>
-    <div class="row">
-      <% @items.first(4).each do |item| %>
-        <div class="col-md-3">
-          <div class="card" style="width: 18rem;">
-            <%= link_to item_path(item) do %>
-            <%= image_tag item.get_image(250,250),class:"card-img-top"  %>
-            <% end %>
-            <div class="card-body">
-              <p class="card-text"><%= item.name %></p>
-              <% if item.is_active == true %>
-                <p class="card-text"><%= item.price %>円</p>
-              <% else %>
-                <p class="card-text text-danger">販売停止中</p>
-              <% end %>
+      購入には会員登録が必要になります。
+      </h4>
+      <div class="mx-auto mt-5">
+      <h2>新着商品</h2>
+        <div class="row">
+          <% @items.first(4).each do |item| %>
+            <div class="col-md-3">
+              <div class="card h-100">
+                <div class="card-body text-center">
+                <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image,class:"card-img-top img-fluid"  %>
+                <% end %>
+                  <p class="card-text"><%= item.name %></p>
+                  <% if item.is_active == true %>
+                    <p class="card-text"><%= item.price %>円</p>
+                  <% else %>
+                    <p class="card-text text-danger">販売停止中</p>
+                  <% end %>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-    <div class="text-right m-4">
-      <%= link_to "全ての商品を見る>", items_path, class: "link-opacity-100" %>
+        <div class="text-right m-4">
+          <%= link_to "すべての商品を見る", items_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
