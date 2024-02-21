@@ -1,3 +1,4 @@
+
 <h1>注文情報入力</h1>
 <%= form_with model: @order, url: orders_confirm_path do |f| %>
   <table class="table">
@@ -23,8 +24,8 @@
       </td>
       <td>
         <%# 登録先住所 %>
-        <%#= f.radio_button :serect_address, "registered_address" %>
-        <%#= f.select :serect_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
+        <%= f.radio_button :serect_address, "registered_address" %>
+        <%= f.select :serect_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
       </td>
 
         <%# 新しいお届け先 %>
@@ -32,7 +33,18 @@
         <%= f.radio_button :serect_address, "address.id" %>
         <%= f.label :serect_address_new_address_id, "新しいお届け先" %>
         <%# address追加 %>
-        <%= render 'address_form', address: @address %>
+        <div class="form-group">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+          <%= f.text_field :postal_code, class: 'form-control address_postal_code' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, class: 'form-control address_address' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "宛名" %>
+          <%= f.text_field :name, class: 'form-control address_name' %>
+        </div>
       </td>
     </tr>
     <div class="row">

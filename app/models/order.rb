@@ -1,8 +1,7 @@
 class Order < ApplicationRecord
   
-  
-  
-  
+  validates :payment_method, presence: true
+  validates :serect_address, presence: true
   
   def shipping_cost
     800

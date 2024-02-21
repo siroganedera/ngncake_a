@@ -9,9 +9,8 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @address = Address.new(address_params)
   
-    if @order.save && @address.save
-      # 保存が成功した場合の処理
-      redirect_to thanks_orders_path
+    if @order.valid? && @address.save
+      redirect_to orders_confirm_path
     else
       render :new
     end
@@ -19,12 +18,15 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @cart_items = CartItem.all
-    
     @order = Order.new(order_params)
-    @address = Address.find(params[:order][:address_id])
-    @order.postal_code = @address.postal_code
-    @order.address = @address.address
-    @order.name = @address.name
+    #@address = Address.find(params[:order][:address_id])
+    if params[:order][:serect_address] == "current_customer"
+          @order.postal_code = current_customer.postal_code
+          @order.address = current_customer.address
+          @order.name = current_customer.last_name+current_customer.first_name
+          
+    end
+
     
   end
   
@@ -42,8 +44,9 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:serect_address, :address_id, :postal_code, :address, :name)
-    params[:order][:payment_method]
+    params.require(:order).permit( :address_id, :postal_code, :address, :name, :payment_method)
+    
+
   end
   
   

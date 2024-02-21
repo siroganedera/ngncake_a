@@ -1,4 +1,4 @@
-<%= form_with model:@order, local:true do |f| %>
+<%= form_with model: @order, local:true do |f| %>
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-8 offset-md-1'>
@@ -17,28 +17,28 @@
         </thead>
 
         <tbody>
-          <%# 合計計算 %>
+           合計計算 
           <% total_subtotal = 0 %>
-          <%# @cart_items.each do |cart_item| %>
+          <% @cart_items.each do |cart_item| %>
           <tr>
-            <%# 商品画像 %>
-            <td><%#= image_tag cart_item.item.get_item_image %></td>
+             商品画像 
+            <td><%= image_tag cart_item.item.get_image %></td>
 
             <%# 商品名 %>
-            <td><%#= cart_item.item.name %></td>
+            <td><%= cart_item.item.name %></td>
 
             <%# 税込価格 %>
-            <td><%#= cart_item.item.with_tax_price %></td>
+            <td><%= cart_item.item.add_tax_price %></td>
 
             <%# 商品の個数 %>
-            <td><%#= cart_item.amount %></td>
+            <td><%= cart_item.amount %></td>
 
             <%# 税込価格×個数 %>
-            <td><%#= cart_itemr.subtotal %></td>
+            <td><%= cart_item.subtotal %></td>
             <%# 合計計算 %>
-            <%# total_subtotal += cart_item.subtotal %>
+            <% total_subtotal += cart_item.subtotal %>
           </tr>
-          <%# end %>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -46,17 +46,17 @@
       <table class='table'>
         <tr>
       	  <th>送料</th>
-      	  <th><%#= order.shipping_cost %></th>
+      	  <th><%= @order.shipping_cost %></th>
         </tr>
 
         <tr>
       	  <th>商品合計</th>
-      	  <th><%#= total_subtotal %></th>
+      	  <th><%= total_subtotal %></th>
         </tr>
 
         <tr>
       	  <th>請求金額</th>
-      	  <th><%#= total_subtotal+order.shipping_cost %></th>
+      	  <th><%= total_subtotal+@order.shipping_cost %></th>
         </tr>
       </table>
     </div>
@@ -65,11 +65,11 @@
     <table class= table>
       <tr>
         <th style="font-size: 12px;">支払い方法</th>
-        <td><%#= order.payment_method %></td>
+        <td><%= @order.payment_method_i18n %></td>
       </tr>
       <tr>
         <th style="font-size: 12px;">お届け先</th>
-        <td><%#= "#{order.postal_code}, #{order.address}" %><br><%#= order.name %></td>
+        <td><%= "#{@order.postal_code}, #{@order.address}" %><br><%= @order.name %></td>
 
       </tr>
     </table>
