@@ -1,5 +1,6 @@
   <%= form_with model: @address, url: address_path(@address) do |f| %>
   <div class="container mt-4">
+    <%= render 'layouts/errors', obj: @address %>
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
