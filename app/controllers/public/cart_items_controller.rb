@@ -37,7 +37,7 @@ class Public::CartItemsController < ApplicationController
     redirect_to root_path, notice: 'カート内商品を棚に戻しました'
   end
 
-
+  
 
   private
 

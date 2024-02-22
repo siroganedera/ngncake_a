@@ -31,7 +31,7 @@
                 <%= f.label :amount, '個数選択' %>
                 <%= f.select :amount, (1..10), selected: cart_item.amount %>
                 <%= f.hidden_field :item_id %>
-                <%= f.submit "変更", class: 'btn btn-secondary' %>
+                <%= f.submit "変更", class: 'btn btn-sm btn-success' %>
               <% end %>
             </td>
             
@@ -47,7 +47,7 @@
   </div>
   
   <div class='row'>
-    <%= link_to 'お買い物を続ける', items_path, class: "btn btn-sm btn-primary"%>
+    <%= link_to 'お買い物を続ける', items_path, class: "btn btn-sm btn-primary" %>
   </div>
   
   <div class='row'>
@@ -60,7 +60,7 @@
   </div>
   
   <div class='row'>
-    <%= link_to '情報入力', new_order_path, class: "btn btn-sm btn-secondary"%>
+    <%= link_to '情報入力', new_order_path, class: "btn btn-success"%>
   </div>
   
 </div>

@@ -7,10 +7,9 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @address = Address.new(address_params)
   
-    if @order.valid? && @address.save
-      redirect_to orders_confirm_path
+    if @order.save!
+      redirect_to orders_thanks_path
     else
       render :new
     end
@@ -21,11 +20,23 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     #@address = Address.find(params[:order][:address_id])
     if params[:order][:serect_address] == "current_customer"
-          @order.postal_code = current_customer.postal_code
-          @order.address = current_customer.address
-          @order.name = current_customer.last_name+current_customer.first_name
-          
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name+current_customer.first_name
+      
+    elsif params[:order][:serect_address] == "registered_address" 
+      @address = Address.find(params[:order][:serect_address_address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+      
+    elsif params[:order][:serect_address] == "address.id"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = address.postal_code
+      @order.address = address.address
+      @order.name = address.name
     end
+    
 
     
   end
@@ -35,10 +46,12 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    @order_details = OrderDetail.all
   end
 
   def show
     @order = Order.find(params[:id])
+    
   end
   
   private
@@ -46,10 +59,9 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit( :address_id, :postal_code, :address, :name, :payment_method)
     
-
   end
   
-  
+   
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end

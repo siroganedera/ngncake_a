@@ -26,6 +26,7 @@ Rails.application.routes.draw do
      end
     end
     
+    post '/orders/thanks', to: 'orders#thanks'
     get 'orders/thanks', to: "orders#thanks"
     get 'orders/confirm', to: "orders#confirm"
     post 'orders/confirm', to: "orders#confirm"
