@@ -13,10 +13,10 @@
         <tbody>
           <% @genres.each do |genre| %>
             <tr>
-             <td><% genre.name %></td>
+             <td><%= genre.name %></td>
             </tr>
           <% end %>
-        </tbody>  
+        </tbody>
       </table>
     </div>
     <div class='col-md-9 offset-md-1 m-auto'>
@@ -27,13 +27,13 @@
           <% @items.first(4).each do |item| %>
             <div class="col-md-3">
               <div class="card h-100">
-                <div class="card-body text-center">
+                <div class="card-body">
                 <%= link_to item_path(item) do %>
                 <%= image_tag item.get_image(200,200),class:"card-img-top"  %>
                 <% end %>
                   <p class="card-text"><%= item.name %></p>
                   <% if item.is_active == true %>
-                    <p class="card-text"><%= item.price %>円</p>
+                    <p class="card-text">￥<%= item.add_tax_price.to_s(:delimited) %></p>
                   <% else %>
                     <p class="card-text text-danger">販売停止中</p>
                   <% end %>
@@ -43,7 +43,7 @@
           <% end %>
         </div>
         <div class="text-right m-4">
-          <%= link_to "すべての商品を見る", items_path, class: "btn btn-secondary" %>
+          <%= link_to "すべての商品を見る>", items_path, class: "link-opacity-100" %>
         </div>
       </div>
     </div>
