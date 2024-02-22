@@ -1,6 +1,6 @@
 <%# ジャンル編集 %>
 <h1>Genre Edit</h1>
-<%= form_with model: @genre, local: true do |f| %>
+<%= form_with model: @genre,url: admin_genre_path, local: true do |f| %>
   <div class="form-group">
     <%= f.label :name, "ジャンル名" %>
     <%= f.text_field :name, placeholder: "ジャンル名", class: 'form-control genre_name' %>
