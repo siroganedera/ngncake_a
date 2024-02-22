@@ -1,33 +1,61 @@
 
-<h1>注文情報確認</h1>
-<table>
-  
-  <thead>
+<h1>注文情報入力</h1>
+<%= form_with model: @order, url: orders_confirm_path do |f| %>
+  <table class="table">
     <tr>
-      <th>商品名</th>
-      <th></th>
-      <th>単価</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
+      <th>支払い方法</th>
+      <td>
+        <%# クレジットカード %>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+        <%# 銀行振込 %>
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+      </td>
     </tr>
-  </thead>
-    <!--< @cart_items.each do |cart_item| %>-->
+
     <tr>
-      <%# 商品画像 %>
-      <td><%#= image_tag cart_item.item.get_item_image %></td>
-      <%# 商品名 %>
-      <td>cart_item.name</td>
-      <%# 税抜価格　変更→税込価格 %>
-      <td>cart_item.price</td>
-      <%# 商品の個数 %>
-      <td>cartitem.amount</td>
-      <%# 税込価格×個数 %>
-      <td>cartitem.</td>
+      <th>お届け先</th>
+
+      <td>
+        <%# ご自身の住所 %>
+        <%= f.radio_button :serect_address, "current_customer" %>
+        <%= f.label :shipping_address_customer, "ご自身の住所: #{current_customer.customer_display}" %>
+      </td>
+      <td>
+        <%# 登録先住所 %>
+        <%= f.radio_button :serect_address, "registered_address" %>
+        <%= f.select :serect_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
+      </td>
+
+        <%# 新しいお届け先 %>
+      <td>
+        <%= f.radio_button :serect_address, "address.id" %>
+        <%= f.label :serect_address_new_address_id, "新しいお届け先" %>
+        <%# address追加 %>
+        <div class="form-group">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+          <%= f.text_field :postal_code, class: 'form-control address_postal_code' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, class: 'form-control address_address' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "宛名" %>
+          <%= f.text_field :name, class: 'form-control address_name' %>
+        </div>
+      </td>
     </tr>
-  <tbody>
-    
-  </tbody>  
-    
-</table>
+    <div class="row">
+      <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
+        <div class="btn-wrapper col-10 mx-auto">
+          <div class="row">
+            <%= f.submit value="確認する", class: "btn btn-success btn-sm " %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </table>
+<% end %>
 

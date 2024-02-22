@@ -1,5 +1,5 @@
 <h1>ジャンル一覧・追加</h1>
-<%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+<%= form_with model: @genre_new, url: admin_genres_path, local: true do |f| %>
   <div class="form-group">
     <%= f.label :name, "ジャンル名" %>
     <%= f.text_field :name, placeholder: "ジャンル名",autofocus: true, autocomplete: "name",class: 'form-control genre_name' %>
