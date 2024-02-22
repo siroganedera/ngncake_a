@@ -30,7 +30,7 @@
               <div class="card h-100">
                 <div class="card-body text-center">
                 <%= link_to item_path(item) do %>
-                <%= image_tag item.get_image,class:"card-img-top img-fluid"  %>
+                <%= image_tag item.get_image(200,200),class:"card-img-top"  %>
                 <% end %>
                   <p class="card-text"><%= item.name %></p>
                   <% if item.is_active == true %>
