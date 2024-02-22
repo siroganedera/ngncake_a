@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
 
   # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
      end
     end
     
+    post '/orders/thanks', to: 'orders#thanks'
     get 'orders/thanks', to: "orders#thanks"
     get 'orders/confirm', to: "orders#confirm"
     post 'orders/confirm', to: "orders#confirm"
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
     
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
-
+  
   namespace :admin do
     root :to => 'homes#top'
     resources :items, only: [:new, :create, :index, :show, :edit, :update]

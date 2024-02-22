@@ -2,7 +2,7 @@
   <div class="container mt-4">
     <%= render 'layouts/errors', obj: @address %>
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-10">
         <div class="card">
           <div class="card-header text-center">
             <h3>配送先編集</h3>
@@ -10,7 +10,7 @@
           <table class="table">
             <tbody>
               <tr>
-                <th>郵便番号</th>
+                <th>郵便番号(ハイフンなし)</th>
                 <td>
                   <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %>
                 </td>
