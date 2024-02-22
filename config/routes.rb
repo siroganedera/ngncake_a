@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
@@ -10,10 +10,11 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   scope module: :public do
     root :to => 'homes#top'
     get 'about' => 'homes#about'
+    get "search" => "searches#search"
     resources :items, only: [:index, :show]
     get 'customers/my_page', to: 'customers#show'
     get 'customers/information/edit', to: 'customers#edit'
@@ -25,18 +26,19 @@ Rails.application.routes.draw do
         delete 'destroy_all'
      end
     end
-    
+
     post '/orders/thanks', to: 'orders#thanks'
     get 'orders/thanks', to: "orders#thanks"
     get 'orders/confirm', to: "orders#confirm"
     post 'orders/confirm', to: "orders#confirm"
     resources :orders, only: [:new, :create, :index, :show]
-    
+
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
-  
+
   namespace :admin do
     root :to => 'homes#top'
+    get "search" => "searches#search"
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]

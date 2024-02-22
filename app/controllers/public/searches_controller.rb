@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class Public::SearchesController < ApplicationController
   before_action :search
 
   def search
