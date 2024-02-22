@@ -19,7 +19,7 @@
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td>
-              <%= image_tag cart_item.item.get_image, size: "50x50"  %>
+              <%#= image_tag cart_item.item.get_image, size: "50x50"  %>
               <%= cart_item.item.name %>
             </td>
 
@@ -79,6 +79,7 @@
     <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
       <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
           <%= f.hidden_field :status, :value => 0 %>
           <%= f.submit value="注文を確定する", class: "btn btn-success btn-sm " %>
         </div>
