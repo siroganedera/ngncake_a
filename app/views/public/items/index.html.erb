@@ -16,7 +16,7 @@
         </tbody>
       </table>
     </div>
-    <div class="offset-md-1">
+    <div class="offset-md-1 col">
       <div class="d-flex">
         <h2 class="offset-md-1 p-2">商品一覧</h2>
         <h4 class="pt-3">(全<%= @items.all.count %>件)</h4>
@@ -26,17 +26,21 @@
         <div class='col-md-3'>
           <div class="card m-2" style="width: 180px; height: 270px;">
             <%= link_to item_path(item) do %>
-              <div class="img-container"><%= image_tag item.get_image(179,130) %></div>
+              <div class="img-container"><%= image_tag item.get_image(178,136) %></div>
             <% end %>
             <div class="card-body">
               <p class="h-75"><%= item.name %></p>
-              ￥<%= item.add_tax_price.to_s(:delimited) %>
+              <% if item.is_active == true %>
+                ￥<%= item.add_tax_price.to_s(:delimited) %>
+              <% else %>
+                <p class="text-danger">販売停止中</p>
+              <% end %>
             </div>
           </div>
         </div>
         <% end %>
       </div>
-      <div class="col row my-3 justify-content-center pl-5">
+      <div class="col row my-3 justify-content-center">
         <%= paginate @items %>
       </div>
     </div>
