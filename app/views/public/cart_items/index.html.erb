@@ -2,7 +2,7 @@
 
   <div>ショッピングカート</div>
   <%= link_to 'カート内を空にする', destroy_all_cart_items_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-  
+
   <div class='row'>
     <table class='table table-bordered table-inverse'>
       <thead class="thead-dark">
@@ -16,40 +16,43 @@
       </thead>
 
       <tbody>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            
-            <td>
-              <%#= image_tag cart_item.item.get_image, size: "50x50" %>
-              <%= cart_item.item.name %>
-            </td>
-            
-            <td>￥<%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
-            
-            <td>
-              <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
-                <%= f.label :amount, '個数選択' %>
-                <%= f.select :amount, (1..10), selected: cart_item.amount %>
-                <%= f.hidden_field :item_id %>
-                <%= f.submit "変更", class: 'btn btn-sm btn-success' %>
-              <% end %>
-            </td>
-            
-            <td>￥<%= (cart_item.add_tax_price * cart_item.amount).to_s(:delimited) %></td>
-            
-            <td><%= link_to 'Destroy', cart_item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-            
-          </tr>
+        <% if @cart_items.present? %>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+
+              <td>
+                <%= image_tag cart_item.item.get_image(179,130), size: "50x50" %>
+                
+                <%= cart_item.item.name %>
+              </td>
+
+              <td>￥<%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
+
+              <td>
+                <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
+                  <%= f.label :amount, '個数選択' %>
+                  <%= f.select :amount, (1..10), selected: cart_item.amount %>
+                  <%= f.hidden_field :item_id %>
+                  <%= f.submit "変更", class: 'btn btn-sm btn-success' %>
+                <% end %>
+              </td>
+
+              <td>￥<%= (cart_item.add_tax_price * cart_item.amount).to_s(:delimited) %></td>
+
+              <td><%= link_to 'Destroy', cart_item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
 
     </table>
   </div>
-  
+
   <div class='row'>
     <%= link_to 'お買い物を続ける', items_path, class: "btn btn-sm btn-primary" %>
   </div>
-  
+
   <div class='row'>
     <table>
       <tr>
@@ -58,10 +61,10 @@
       </tr>
     </table>
   </div>
-  
+
   <div class='row'>
     <%= link_to '情報入力', new_order_path, class: "btn btn-success"%>
   </div>
-  
+
 </div>
 
