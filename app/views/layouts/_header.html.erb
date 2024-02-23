@@ -1,4 +1,4 @@
-<header>
+<header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand offset-md-2" href="/"><span>NaganoCake</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
           </li>
           <% if controller_name != 'sessions' %>
           <div class="search_form p-3">
-            <%= search_form_for @q, url: search_path, class:"d-flex" do |f| %>
+            <%= search_form_for @q, url: admin_search_path, class:"d-flex" do |f| %>
             <div class="col-md-9 p-0">
               <%= f.search_field :name_cont, class:"form-control pr-5", placeholder: 'Search' %>
             </div>

@@ -1,3 +1,3 @@
-class Admin::SearchController < ApplicationController
+class Admin::SearchesController < ApplicationController
 
 end
