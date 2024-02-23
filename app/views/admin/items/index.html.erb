@@ -11,9 +11,9 @@
     <thead>
       <tr>
         <th scope='col' style='width: 10%'>商品ID</th>
-        <th>商品名</th>
+        <th scope='col' style='width: 40%'>商品名</th>
         <th scope='col' style='width: 10%'>税抜価格</th>
-        <th>ジャンル</th>
+        <th scope='col' style='width: 25%'>ジャンル</th>
         <th scope='col' style='width: 15%'>ステータス</th>
       </tr>
     </thead>
@@ -26,9 +26,9 @@
           <td><%= item.genre.name %></td>
           <td>
             <% if item.is_active? %>
-              <p class="text-success">販売中</p>
+              <p class="badge badge-success">販売中</p>
             <% else %>
-              <p class="text-danger">販売停止中</p>
+              <p class="badge badge-danger">販売停止中</p>
             <% end %>
           </td>
         </tr>
