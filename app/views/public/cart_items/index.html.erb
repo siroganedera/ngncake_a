@@ -21,7 +21,7 @@
             <tr>
 
               <td>
-                <%= image_tag cart_item.item.get_image(179,130), size: "50x50" %>
+                <%= image_tag cart_item.item.get_image(179,130) %>
                 
                 <%= cart_item.item.name %>
               </td>
@@ -39,7 +39,7 @@
 
               <td>￥<%= (cart_item.add_tax_price * cart_item.amount).to_s(:delimited) %></td>
 
-              <td><%= link_to 'Destroy', cart_item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+              <td><%= link_to 'Destroy', cart_item, method: :delete, class: "btn btn-sm btn-danger"%></td>
 
             </tr>
           <% end %>

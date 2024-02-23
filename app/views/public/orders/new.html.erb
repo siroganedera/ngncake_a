@@ -19,19 +19,19 @@
 
       <td>
         <%# ご自身の住所 %>
-        <%= f.radio_button :serect_address, "current_customer" %>
-        <%= f.label :shipping_address_customer, "ご自身の住所: #{current_customer.customer_display}" %>
+        <%= f.radio_button :select_address, "current_customer" %>
+        <%= f.label :select_address_customer, "ご自身の住所: #{current_customer.customer_display}" %>
       </td>
       <td>
         <%# 登録先住所 %>
-        <%= f.radio_button :serect_address, "registered_address" %>
-        <%= f.select :serect_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
+        <%= f.radio_button :select_address, "registered_address" %>
+        <%= f.select :select_address_address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
       </td>
 
         <%# 新しいお届け先 %>
       <td>
-        <%= f.radio_button :serect_address, "address.id" %>
-        <%= f.label :serect_address_new_address_id, "新しいお届け先" %>
+        <%= f.radio_button :select_address, "address.id" %>
+        <%= f.label :select_address_new_address_id, "新しいお届け先" %>
         <%# address追加 %>
         <div class="form-group">
           <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>

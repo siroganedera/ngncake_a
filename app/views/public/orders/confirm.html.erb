@@ -19,16 +19,14 @@
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td>
-              <%#= image_tag cart_item.item.get_image, size: "50x50"  %>
+              <%= image_tag cart_item.item.get_image(179,130)  %>
               <%= cart_item.item.name %>
             </td>
 
             <%# 税込価格 %>
             <td><%= cart_item.item.add_tax_price %></td>
-
             <%# 商品の個数 %>
             <td><%= cart_item.amount %></td>
-
             <%# 税込価格×個数 %>
             <td><%= cart_item.subtotal %></td>
             <%# 合計計算 %>
@@ -81,6 +79,7 @@
         <div class="row">
           <%= f.hidden_field :customer_id, :value => current_customer.id %>
           <%= f.hidden_field :status, :value => 0 %>
+          
           <%= f.submit value="注文を確定する", class: "btn btn-success btn-sm " %>
         </div>
       </div>
