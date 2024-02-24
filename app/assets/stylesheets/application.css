@@ -27,8 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px; 
-  text-align: center; 
+  height: 300px;
+  text-align: center;
 }
 
 .image-container {
@@ -52,9 +52,33 @@
 
 main{
   background-color: #FFFDE2;
-  min-height: calc(100vh - 110px); 
+  min-height: calc(100vh - 100px);
 }
 
 header, footer {
-  height: 100px; 
+  height: 100px;
+}
+
+
+.custom-link{
+  text-decoration: none !important;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+}
+
+.custom-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #97B387;
+  transition: .3s;
+  transform: translateX(-50%);
+}
+
+.custom-link:hover::after{
+  width: 100%;
 }
