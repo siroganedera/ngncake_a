@@ -27,7 +27,6 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = CartItem.all
     @order = Order.new(order_params)
-    #@address = Address.find(params[:order][:address_id])
     if params[:order][:select_address] == "current_customer"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -53,7 +52,8 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-
+    @order_details = OrderDetail.all
+    @total_price = calculate_total_price(@order_details)
   end
 
   private
@@ -72,5 +72,14 @@ class Public::OrdersController < ApplicationController
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
-
+  
+  def calculate_total_price(order_detail)
+    total_price = 0
+    order_detail.each do |order_detail|
+      total_price += order_detail.price * order_detail.amount
+    end
+    return total_price
+  end
+  
+  
 end

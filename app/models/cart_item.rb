@@ -3,14 +3,10 @@ class CartItem < ApplicationRecord
   belongs_to :item
 
 
-  def get_image
-    if item.image.attached?
-      item.image.url
-    else
-      'no-image-icon'
-    end
+  def get_image(width, height)
+    image.variant(resize_to_limit: [width, height]).processed
   end
-
+  
   def add_tax_price
     (item.price * 1.1).floor
   end
