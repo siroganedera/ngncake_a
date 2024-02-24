@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  has_many :order_details
+  belongs_to :customer
   
   validates :payment_method, presence: true
   validates :postal_code, presence: true
@@ -10,15 +12,7 @@ class Order < ApplicationRecord
     800
   end
   
-  
-  def total_payment
-    total_price = 0
-    toral_price += shipping_cost
-    order_details.each do |order_detail|
-      total_price += order_detail.price * order_detail.amount
-    end
-    return total_price
-  end
+  private
   
   
   enum payment_method: { credit_card: 0, transfer: 1 }
