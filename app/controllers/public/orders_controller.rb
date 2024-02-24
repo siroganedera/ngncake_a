@@ -11,13 +11,14 @@ class Public::OrdersController < ApplicationController
   
     if @order.save
       @cart_items.each do |cart_item|
-        order_detail = @order.order_details.build(
+        order_detail = @order.order_details.new(
           item_id: cart_item.item_id,
           amount: cart_item.amount,
           price: cart_item.item.price
         )
         order_detail.save
       end
+      @cart_items.destroy_all
       redirect_to orders_thanks_path
     else
       render :new
@@ -37,7 +38,6 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-
     elsif params[:order][:select_address] == "address.id"
     end
   end
@@ -63,12 +63,7 @@ class Public::OrdersController < ApplicationController
 
   end
   
-  def oredr_detail_params
-    params.require(:order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
-    
-  end
   
-
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end

@@ -61,10 +61,11 @@
       </tr>
     </table>
   </div>
-
+  <% if @cart_items.present? %>
   <div class='row'>
+    
     <%= link_to '情報入力', new_order_path, class: "btn btn-success"%>
   </div>
-
+  <% end %>
 </div>
 
