@@ -8,11 +8,11 @@ class CartItem < ApplicationRecord
   end
   
   def add_tax_price
-    (item.price * 1.1).floor
+    (item.price * 1.1).round
   end
 
   def subtotal
-    (item.price* 1.1).floor*amount
+    (item.price* 1.1).round*amount
   end
 
   #def calculate_total_price

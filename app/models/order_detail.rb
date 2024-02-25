@@ -2,7 +2,7 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
   def price
-    (item.price* 1.1).floor
+    (item.price* 1.1).round
   end
   
   def subtotal
