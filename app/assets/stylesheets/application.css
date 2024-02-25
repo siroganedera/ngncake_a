@@ -82,3 +82,7 @@ header, footer {
 .custom-link:hover::after{
   width: 100%;
 }
+
+.pagination {
+  justify-content: center;
+}
