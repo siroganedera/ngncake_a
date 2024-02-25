@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h3>注文履歴詳細</h3>
-  <div class="row justify-content-center">
+  <div class="row ">
     <div class="col-md-8">
       <table class="table">
         <tbody>
@@ -59,13 +59,32 @@
             <%# 合計計算 %>
             <% total_subtotal += order_detail.subtotal %>
             <td>
-              <%= form_with model: order_detail, url: admin_order_detail_path(@order_detail), local: true do |f| %>
+              <%= form_with model: order_detail, url: admin_orders_detail_path(order_detail), local: true do |f| %>
                 <%= f.collection_select :making_status, OrderDetail.making_statuses.keys.map { |making_status| [I18n.t("enums.order_detail.making_status.#{making_status}"), making_status] }, :last, :first, {}, { class: 'form-control' } %>
                 <%= f.submit "更新", class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
           </tr>
           <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h5 class="p-3 mb-2 bg-light text-dark">請求情報</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total_price %></td>
+          </tr>
+          <tr>
+            <th>配送料</th>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <th>ご請求額</th>
+            <td><%= @order.total_payment %></td>
+          </tr>
         </tbody>
       </table>
     </div>
