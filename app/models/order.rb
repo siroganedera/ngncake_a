@@ -12,6 +12,14 @@ class Order < ApplicationRecord
     800
   end
   
+  def item_total
+    total = 0
+    self.order_details.each do |order_detail| 
+      total += order_detail.amount
+    end
+    return total
+  end
+  
   private
   
   

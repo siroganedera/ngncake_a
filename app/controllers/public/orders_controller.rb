@@ -53,14 +53,13 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = OrderDetail.all
-    @total_price = calculate_total_price(@order_details)
+    @total_price = calculate_total_price(@order.order_details)
   end
 
   private
 
   def order_params
     params.require(:order).permit(:customer_id, :address_id, :postal_code, :address, :name, :payment_method, :total_payment, :shipping_cost)
-
   end
   
   

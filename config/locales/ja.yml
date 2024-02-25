@@ -13,7 +13,7 @@
           preparing_for_shipment:  "発送準備"
           shipped: "発送済み"
       #注文詳細
-      orderdetail:
+      order_detail:
         #製作ステータス
         making_status:
           not_ready_for_production: "製作不可"
