@@ -1,9 +1,9 @@
 <%= form_with model: @order , url: orders_path, local:true do |f| %>
 <div class='container-fluid px-5 px-sm-0'>
   <div class='row'>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-7 offset-md-1'>
 
-      <div style="font-size: 10px;">注文情報確認</div>
+      <div style="font-size: 24px;">注文情報確認</div>
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
@@ -36,7 +36,8 @@
         </tbody>
       </table>
     </div>
-    <div class='col-md-3'>
+    
+    <div class='col-md-3'style="margin-top: 50px;">
       <table class='table'>
         <tr>
       	  <th>送料</th>
@@ -55,32 +56,35 @@
       	  <%= f.hidden_field :total_payment, :value => total_subtotal+@order.shipping_cost %>
         </tr>
       </table>
+      <div class='col-md-1'></div>
     </div>
   </div>
   <div class = row >
-    <table class= table>
-      <tr>
-        <th style="font-size: 12px;">支払い方法</th>
-        <td><%= @order.payment_method_i18n %></td>
-        <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-      </tr>
-      <tr>
-        <th style="font-size: 12px;">お届け先</th>
-        <td><%= "#{@order.postal_code}, #{@order.address}" %><br><%= @order.name %></td>
-        <%= f.hidden_field :postal_code, :value => @order.postal_code %>
-        <%= f.hidden_field :address, :value => @order.address %>
-        <%= f.hidden_field :name, :value => @order.name %>
-      </tr>
-    </table>
-  </div>
-  <div class="row">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= f.hidden_field :customer_id, :value => current_customer.id %>
-          <%= f.hidden_field :status, :value => 0 %>
-          
-          <%= f.submit value="注文を確定する", class: "btn btn-success btn-sm " %>
+    <div class='col-md-7 offset-md-1'>
+      <table class= table>
+        <tr>
+          <th style="font-size: 24px;">支払い方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+          <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+        </tr>
+        <tr>
+          <th style="font-size: 24px;">お届け先</th>
+          <td><%= "#{@order.postal_code}, #{@order.address}" %><br><%= @order.name %></td>
+          <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+          <%= f.hidden_field :address, :value => @order.address %>
+          <%= f.hidden_field :name, :value => @order.name %>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
+        <div class="btn-wrapper col-10 mx-auto">
+          <div class="row">
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.hidden_field :status, :value => 0 %>
+            
+            <%= f.submit value="注文を確定する", class: "btn btn-success btn-sm " %>
+          </div>
         </div>
       </div>
     </div>
