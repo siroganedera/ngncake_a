@@ -1,15 +1,84 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.img-container {
+  width: 178px;
+  height: 137px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  text-align: center;
+}
+
+.image-container {
+  width: 400px;
+  height: 450px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-show {
+  margin-right: 150px;
+}
+
+.background-color {
+  background-color: #97B387;
+}
+
+main{
+  background-color: #FFFDE2;
+  min-height: calc(100vh - 100px);
+}
+
+header, footer {
+  height: 100px;
+}
+
+
+.custom-link{
+  text-decoration: none !important;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+}
+
+.custom-link::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #97B387;
+  transition: .3s;
+  transform: translateX(-50%);
+}
+
+.custom-link:hover::after{
+  width: 100%;
+}

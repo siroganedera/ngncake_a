@@ -1,30 +1,39 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  def create
-    @genre= Genre.new
-    @genre.admin_id = current_admin.id
-    if@genre.save
-      redirect_to genre_path(@genre), notice: "ジャンルを追加しました"
-    else
-      @genre=Genre.all
-    end
-  end
 
   def index
-    @genre = Genre.all
-    @genre = Genre.new
+    @genre_new = Genre.new
+    @genres = Genre.all
+  end
+
+  def create
+    @genre= Genre.new(genre_params)
+    if@genre.save
+      redirect_to request.referer
+    else
+      @genre=Genre.all
+      render :index
+    end
   end
 
   def edit
     @genre = Genre.find(params[:id])
+    
   end
 
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      redirect_to genre_path(@genre), notice: "ジャンル名を変更しました。"
+      redirect_to admin_genres_path
     else
-      render "edit"
+      render :edit, locals: { genre: @genre } 
     end
   end
+
+  private
+
+  def genre_params
+    params.require(:genre).permit(:name)
+  end
+
 end

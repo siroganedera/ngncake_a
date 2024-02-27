@@ -1,2 +1,46 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class='container mt-4'>
+  <h2 class="offset-md-2 mt-4">商品編集</h2>
+  <div class="col row justify-content-center mt-4">
+    <div class='col-md-6'>
+      <%= render 'layouts/errors', obj: @item %>
+    <%= form_with model:@item, url: admin_item_path(@item), local:true do |f| %>
+      <div class="form-group d-flex">
+        <div class="p-2" style="width: 172px;"><%= f.label :商品画像 %></div>
+        <div class="p-2" style="width: 306px;"><%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %></div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="p-2" style="width: 172px;"><%= f.label :商品名 %></div>
+        <div class="p-2" style="width: 306px;"><%= f.text_field :name, class: "form-control name", placeholder:'商品名' %></div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="p-2" style="width: 172px;"><%= f.label :商品説明 %></div>
+        <div class="p-2" style="width: 306px;"><%= f.text_area :introduction, class: "form-control introduction", rows: "6", placeholder:'ここに説明文を記述します' %></div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="p-2" style="width: 172px;"><%= f.label :ジャンル %></div>
+        <div class="p-2" style="width: 306px;"><%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "---選択してください---"}, :class => 'form-control', :id => 'genre_id' %></div>
+      </div>
+      <div class="form-group d-flex">
+        <div class="w-50 p-2"><%=f.label:税抜価格 %></div>
+        <div class="d-flex w-100 p-2">
+          <%=f.text_field :price, class: "form-control price", placeholder:'1000' %><h6 class="p-2">円</h6>
+        </div>
+      </div>
+      <div class="form-group d-flex">
+        <p class="p-2" style="width: 170px;">販売ステータス</p>
+        <h6 class="p-2" style="width: 150px;">
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+        </h6>
+        <h6 class="p-2">
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+        </h6>
+      </div>
+      <div class="row justify-content-center">
+        <%= f.submit "変更を保存", class: 'btn btn-lg btn-success' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
